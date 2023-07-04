@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "fastify": "^4.19.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0"
   }
 }
