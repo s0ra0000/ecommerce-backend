@@ -4,7 +4,7 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "format": "prettier -u",
+        "format": "prettier --write --ignore-unknown",
         "test": "echo \"Error: no test specified\" && exit 1",
         "prepare": "husky install"
     },
@@ -29,6 +29,6 @@
         "prettier": "^3.0.0"
     },
     "lint-staged": {
-      "**/*" : "npm run format" 
+        "**/*": "npm run format"
     }
 }
