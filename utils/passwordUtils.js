@@ -1,16 +1,16 @@
-const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
-const generateSalt = async () => {
-    const salt = await bcrypt.genSalt(10);
-    return salt;
+const generateSalt = () => {
+    return crypto.randomBytes(10).toString("hex");
 };
 
-const hashPassword = async (password, salt) => {
-    return await bcrypt.hash(password, salt);
+const hashPassword = (password, salt) => {
+    return crypto.pbkdf2Sync(password, salt.toString(), 1000, 64, "sha512").toString("hex");
 };
 
-const comparePassword = async (password, hashedPassword) => {
-    return await bcrypt.compare(password, hashedPassword);
+const comparePassword = (password, hashedPassword, salt) => {
+    const newHashedPassword = hashPassword(password, salt);
+    return newHashedPassword === hashedPassword;
 };
 
 module.exports = { generateSalt, hashPassword, comparePassword };
