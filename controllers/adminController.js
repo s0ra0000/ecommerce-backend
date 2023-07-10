@@ -9,7 +9,6 @@ const registerAdmin = async (req, res) => {
         const token = req.headers.authorization.split(" ")[1];
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         const createdBy = decoded.username;
-        console.log(createdBy);
         const modifiedBy = createdBy;
         const salt = await generateSalt();
         const hash = await hashPassword(req.body.password, salt);
