@@ -23,7 +23,7 @@ const loginAdmin = async (req, res) => {
         const { username, password } = req.body;
         const admin = await Admin.findOne({ username: username });
         const token = generateToken(admin, "admin");
-        if (await comparePassword(password, admin.hash)) {
+        if (await comparePassword(password, admin.hash, admin.salt)) {
             return {
                 ...admin._doc,
                 token,
